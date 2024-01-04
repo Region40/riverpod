@@ -5,6 +5,12 @@ part of 'hooks.dart';
 /// * [preserveState] determines if the current value should be preserved when changing
 /// the [Future] instance.
 ///
+/// The [Future] must have been obtained earlier, e.g. through the use of
+/// [useMemoized]. It must not be created inside [useFuture], e.g.
+/// `useFuture(Future.delayed(Duration.zero))`.
+/// If the [Future] is created inside [useFuture], then every time the build
+/// method gets called, the asynchronous task will be restarted.
+///
 /// See also:
 ///   * [Future], the listened object.
 ///   * [useStream], similar to [useFuture] but for [Stream].
